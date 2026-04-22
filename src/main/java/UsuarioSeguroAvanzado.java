@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class UsuarioSeguroAvanzado {
     private String username;
     private String password;
@@ -11,14 +13,10 @@ public class UsuarioSeguroAvanzado {
         this.username=username;
         this.password=password;
 
-        intentosFallidos=0;
-        bloqueado=false;
-        accesoExitoso=false;
-
-        if(maxIntentos <= 0)
-            this.maxIntentos=3;
-        else
-            this.maxIntentos=maxIntentos;
+        this.intentosFallidos = 0;
+        this.bloqueado = false;
+        this.accesoExitoso = false;
+        this.maxIntentos = (maxIntentos <= 0) ? 3 : maxIntentos;
     }
 
     //Metodos
@@ -45,19 +43,17 @@ public class UsuarioSeguroAvanzado {
         if(bloqueado)
             return false;
 
-        if(password.equals(passwordIngresada))
-        {
+        if (password.equals(passwordIngresada)) {
             intentosFallidos = 0;
             accesoExitoso = true;
             return true;
+        } else {
+            intentosFallidos++;
+            if (intentosFallidos >= maxIntentos) {
+                bloqueado = true;
+            }
+            return false;
         }
-
-        intentosFallidos++;
-
-        if(intentosFallidos >= maxIntentos)
-            bloqueado = true;
-
-        return false;
     }
 
     public void reiniciarAcceso()
