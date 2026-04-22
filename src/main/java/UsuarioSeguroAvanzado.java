@@ -6,6 +6,7 @@ public class UsuarioSeguroAvanzado {
     private int maxIntentos;
     private boolean accesoExitoso;
 
+    //Constructor
     public UsuarioSeguroAvanzado(String username, String password, int maxIntentos){
         this.username=username;
         this.password=password;
@@ -19,6 +20,8 @@ public class UsuarioSeguroAvanzado {
         else
             this.maxIntentos=maxIntentos;
     }
+
+    //Metodos
     public String getUsername(){
         return username;
     }
@@ -63,17 +66,17 @@ public class UsuarioSeguroAvanzado {
         bloqueado = false;
     }
 
-    private boolean passwordSegura(String clave)
+    private boolean passwordSegura(String nueva)
     {
-        if(clave.length() < 8)
+        if(nueva.length() < 8)
             return false;
 
         boolean mayuscula = false;
         boolean numero = false;
 
-        for(int i=0; i<clave.length(); i++)
+        for(int i = 0; i< nueva.length(); i++)
         {
-            char c = clave.charAt(i);
+            char c = nueva.charAt(i);
 
             if(Character.isUpperCase(c))
                 mayuscula = true;
