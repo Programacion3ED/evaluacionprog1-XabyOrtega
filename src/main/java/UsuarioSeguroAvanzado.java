@@ -62,5 +62,25 @@ public class UsuarioSeguroAvanzado {
         intentosFallidos = 0;
         bloqueado = false;
     }
-    
+    private boolean passwordSegura(String clave)
+    {
+        if(clave.length() < 8)
+            return false;
+
+        boolean mayuscula = false;
+        boolean numero = false;
+
+        for(int i=0; i<clave.length(); i++)
+        {
+            char c = clave.charAt(i);
+
+            if(Character.isUpperCase(c))
+                mayuscula = true;
+            
+            if(Character.isDigit(c))
+                numero = true;
+        }
+
+        return mayuscula && numero;
+    }
 }
