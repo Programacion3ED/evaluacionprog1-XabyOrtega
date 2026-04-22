@@ -36,5 +36,31 @@ public class UsuarioSeguroAvanzado {
     public boolean isAccesoExitoso() {
         return accesoExitoso;
     }
+
+    public boolean autenticar(String passwordIngresada)
+    {
+        if(bloqueado)
+            return false;
+
+        if(password.equals(passwordIngresada))
+        {
+            intentosFallidos = 0;
+            accesoExitoso = true;
+            return true;
+        }
+
+        intentosFallidos++;
+
+        if(intentosFallidos >= maxIntentos)
+            bloqueado = true;
+
+        return false;
+    }
+
+    public void reiniciarAcceso()
+    {
+        intentosFallidos = 0;
+        bloqueado = false;
+    }
     
 }
