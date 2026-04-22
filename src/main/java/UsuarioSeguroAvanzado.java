@@ -66,7 +66,7 @@ public class UsuarioSeguroAvanzado {
         bloqueado = false;
     }
 
-    private boolean passwordSegura(String nueva)
+    private boolean validarpasswordSegura(String nueva)
     {
         if(nueva.length() < 8)
             return false;
@@ -97,7 +97,7 @@ public class UsuarioSeguroAvanzado {
         if(!password.equals(actual))
             return false;
 
-        if(!passwordSegura(nueva))
+        if(!validarpasswordSegura(nueva))
             return false;
 
         password = nueva;
