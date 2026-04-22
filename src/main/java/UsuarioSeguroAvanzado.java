@@ -62,6 +62,7 @@ public class UsuarioSeguroAvanzado {
         intentosFallidos = 0;
         bloqueado = false;
     }
+
     private boolean passwordSegura(String clave)
     {
         if(clave.length() < 8)
@@ -76,11 +77,28 @@ public class UsuarioSeguroAvanzado {
 
             if(Character.isUpperCase(c))
                 mayuscula = true;
-            
+
             if(Character.isDigit(c))
                 numero = true;
         }
 
         return mayuscula && numero;
+    }
+
+    public boolean cambiarPassword(String actual,
+                                   String nueva)
+    {
+        if(bloqueado)
+            return false;
+
+        if(!password.equals(actual))
+            return false;
+
+        if(!passwordSegura(nueva))
+            return false;
+
+        password = nueva;
+
+        return true;
     }
 }
